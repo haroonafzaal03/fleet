@@ -1,0 +1,4 @@
+.idea/
+_config/payment.yml
+_config/baseurl.yml
+_config/graphqlcors.yml

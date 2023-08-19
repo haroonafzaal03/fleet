@@ -1,0 +1,7 @@
+SilverStripe\GraphQL\Controller:
+    cors:
+        Enabled: true
+        Allow-Headers: 'Authorization, Content-Type'
+        Allow-Methods:  'GET, POST, OPTIONS'
+        Allow-Credentials: 'true'
+        Allow-Origin: '*'

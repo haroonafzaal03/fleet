@@ -1,0 +1,64 @@
+{
+    "name": "fleet/recipe-cms",
+    "type": "silverstripe-recipe",
+    "description": "The CMS Recipe",
+    "require": {
+        "php": ">=7",
+        "silverstripe/recipe-cms": "4.11.x-dev",
+        "league/omnipay": "^3.0",
+        "silverstripe/silverstripe-omnipay": "^3@dev",
+        "omnipay/stripe": "^3.0",
+        "omnipay/eway": "^3.0",
+        "silverstripe/lumberjack": "^2.0",
+        "dnadesign/silverstripe-elemental": "^4.6",
+        "silverware/select2": "^1.2",
+        "symbiote/silverstripe-queuedjobs": "^4.7",
+        "silvercommerce/geozones": "^1.1",
+        "dvdoug/boxpacker": "^3.9",
+        "league/iso3166": "^2.1",
+        "postmen/sdk-php": "^1.0",
+        "paypal/rest-api-sdk-php": "^1.14",
+        "vulcandigital/silverstripe-seo": "^1.0",
+        "silverstripe/redirectedurls": "^2.1",
+        "colymba/gridfield-bulk-editing-tools": "^3.0",
+        "silverstripe/graphql-devtools": "1.x-dev",
+        "axllent/silverstripe-trailing-slash": "^2.1",
+        "undefinedoffset/sortablegridfield": "^2.0",
+        "symbiote/silverstripe-multivaluefield": "^5.0",
+        "symbiote/silverstripe-gridfieldextensions": "^3",
+        "kinglozzer/multiselectfield": "^2.0",
+        "syanaputra/silverstripe-extra-template-syntax": "1.0.*",
+        "dnadesign/silverstripe-elemental-virtual": "1.x-dev",
+        "geoip2/geoip2": "~2.0",
+        "visualr/omnipay-tillpayments": "^2.0",
+        "elasticsearch/elasticsearch": "7.0.x"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
+    },
+    "extra": {
+        "expose": [
+            "app/client"
+        ],
+        "project-files-installed": [
+            "app/.htaccess",
+            "app/_config.php",
+            "app/_config/mimevalidator.yml",
+            "app/_config/mysite.yml",
+            "app/src/Page.php",
+            "app/src/PageController.php"
+        ],
+        "public-files-installed": [
+            ".htaccess",
+            "index.php",
+            "install-frameworkmissing.html",
+            "install.php",
+            "web.config"
+        ]
+    },
+    "config": {
+        "process-timeout": 600
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
+}

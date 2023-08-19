@@ -1,0 +1,116 @@
+version: '3.9'
+
+services:
+  web:
+    image: funkygibbon/nginx-pagespeed:latest
+    ports:
+      - "8080:80"
+      - "8440:443"
+    volumes:
+      - ./app/www:/var/www
+      - ./config/nginx/site.conf:/etc/nginx/conf.d/site.conf
+    networks:
+      - default-network
+    restart: always
+    depends_on:
+      - php
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+
+  php:
+    image: splsh/php-7.4fpm:latest
+    volumes:
+      - ./app/www:/var/www
+      - ./config/php/php.ini:/usr/local/etc/php/conf.d/docker-stack-custom.ini
+      - ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro
+      - ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub:ro
+    networks:
+      - default-network
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+
+  db:
+    image: percona/percona-server:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      TZ: ${DB_TIMEZONE}
+    ports:
+      - "3306"
+    volumes:
+      - ./db/:/var/lib/mysql
+    command:
+      "--user=mysql"
+    networks:
+      - default-network
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+
+  queuedjob:
+    image: splsh/php-7.4fpm:latest
+    volumes:
+      - ./app/www:/var/www
+      - ./config/php/php.ini:/usr/local/etc/php/conf.d/docker-stack-custom.ini
+    command: "/bin/sh -C /var/www/app/bin/processqueuedjob.sh"
+    networks:
+      - default-network
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+
+  elasticsearch:
+    build:
+        context: config/elasticsearch/
+        args:
+            ELK_VERSION: $ELK_VERSION
+    volumes:
+        - ./config/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+        - ./elastic-data/elasticsearch:/usr/share/elasticsearch/data
+    ports:
+        - "9200:9200"
+        - "9300:9300"
+    environment:
+        ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+        ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
+    restart: always
+    networks:
+        - default-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+
+  kibana:
+    build:
+        context: config/kibana/
+        args:
+            ELK_VERSION: $ELK_VERSION
+    volumes:
+        - ./config/kibana/config:/usr/share/kibana/config:ro
+    ports:
+        - "5600:5601"
+    networks:
+        - default-network
+    restart: always
+    depends_on:
+        - elasticsearch
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+
+networks:
+    default-network:
+        driver: bridge

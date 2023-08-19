@@ -1,0 +1,119 @@
+# register all indexes
+TND\ElasticSearch\ElasticSearchService:
+  registered_indexes:
+    App\Elastic\TripElasticIndex: App\Model\Trip
+
+# extensions
+App\Model\Trip:
+  queuable: false
+  extensions:
+    - TND\ElasticSearch\ElasticSearchable
+
+#Index mapping
+App\Elastic\TripElasticIndex:
+  name: trips
+  source: App\Model\Trip
+  mapping:
+    ID: integer
+    Status: keyword
+    LoadDate: date
+    UnloadDate: date
+    LoadWeight: float
+    UnloadWeight: float
+    CalculatedShortage: float
+    DeliveryChallanNumber: text
+    Vehicle:
+      fieldtype: object
+      fields:
+        ID: keyword
+        Make: text
+        Model: text
+        AxleSize: text
+        BowserCapacity: text
+        VehicleTracking: text
+        BowserType: text
+        LicenseExpiry: date
+        RegistrationNumber: keyword
+        IsOwned: boolean
+    SendingParty:
+      fieldtype: object
+      fields:
+        ID: keyword
+        NTN: text
+        STN: text
+        ContactDetails: text
+        ExpiryAlert: text
+        VehicleTracking: text
+        BowserType: text
+        LicenseExpiry: date
+        CustomerProduct: text
+        CustomerParty: text
+        FreightCharges: float
+        FirstName: text
+        Surname: text
+    ReceivingParty:
+      fieldtype: object
+      fields:
+        ID: keyword
+        NTN: text
+        STN: text
+        ContactDetails: text
+        ExpiryAlert: text
+        VehicleTracking: text
+        BowserType: text
+        LicenseExpiry: date
+        CustomerProduct: text
+        CustomerParty: text
+        FreightCharges: float
+        FirstName: text
+        Surname: text
+    Product:
+      fieldtype: object
+      fields:
+        ID: keyword
+        Name: keyword
+        Description: text
+    OriginLocation:
+      fieldtype: object
+      fields:
+        ID: keyword
+        Name: keyword
+        City: text
+        Lat: text
+        Lng: text
+        State: text
+    DestinationLocation:
+      fieldtype: object
+      fields:
+        ID: keyword
+        Name: keyword
+        City: text
+        Lat: text
+        Lng: text
+        State: text
+    LoadUOM:
+      fieldtype: object
+      fields:
+        ID: keyword
+        Name: keyword
+        ShortName: text
+        Description: text
+    UnloadUOM:
+      fieldtype: object
+      fields:
+        ID: keyword
+        Name: keyword
+        ShortName: text
+        Description: text
+    Documents:
+      fieldtype: nested
+      fields:
+        ID: keyword
+        Name: keyword
+        FileFileName: text
+    DeliveryChalan:
+      fieldtype: nested
+      fields:
+        ID: keyword
+        Name: keyword
+        FileFileName: text

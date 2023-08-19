@@ -1,0 +1,5 @@
+---
+Name: app-baseurl
+---
+SilverStripe\Control\Director:
+  alternate_base_url: '######'

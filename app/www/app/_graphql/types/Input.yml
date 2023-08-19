@@ -1,0 +1,7 @@
+Filter:
+  isInput: true
+  fields:
+    Latitude: String
+    Longitude: String
+    MaximumDistance: String
+    Sort: String

@@ -1,0 +1,21 @@
+---
+Name: app
+After:
+  - modules-other
+---
+SilverStripe\Core\Manifest\ModuleManifest:
+  project: app
+
+SilverStripe\MimeValidator\MimeUploadValidator:
+  MimeTypes:
+    svg:
+      - 'image/svg+xml'
+      - 'image/svg'
+      - 'text/plain'
+
+SilverStripe\Assets\File:
+  allowed_extensions:
+    - svg
+
+SilverStripe\ORM\FieldType\DBForeignKey:
+  dropdown_field_threshold: 3000

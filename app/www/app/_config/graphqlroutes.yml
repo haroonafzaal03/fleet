@@ -1,0 +1,9 @@
+---
+Name: app-graphqlroutes
+After:
+    - 'admin-graphql-routes'
+    - '#adminroutes'
+---
+SilverStripe\Control\Director:
+    rules:
+        'graphql': '%$SilverStripe\GraphQL\Controller.default'

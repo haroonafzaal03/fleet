@@ -1,0 +1,9 @@
+/.idea
+/.env
+graphql-docs
+db/*
+app/www/vendor
+app/www/.graphql-generated
+app/www/public/resources/
+#/config/nextjs-customer/.env.local
+#/config/nextjs-venue/.env.local

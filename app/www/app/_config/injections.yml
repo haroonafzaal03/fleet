@@ -1,0 +1,6 @@
+---
+Name: app-injectors
+After:
+  - '#graphqlconfig'
+  - '#graphql-middlewares'
+---

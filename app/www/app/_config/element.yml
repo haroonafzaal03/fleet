@@ -1,0 +1,9 @@
+---
+Name: app-element
+After: '#elemental'
+Only:
+  moduleexists: 'dnadesign/silverstripe-elemental'
+---
+
+DNADesign\Elemental\Models\BaseElement:
+  inline_editable: false

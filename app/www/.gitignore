@@ -1,0 +1,12 @@
+/silverstripe-cache/
+/.env
+/vendor/
+/themes/simple/
+/resources/
+#/public/
+composer.lock
+/.idea/
+phpunit.xml
+/php-error.log
+/silverstripe.log
+install.lock

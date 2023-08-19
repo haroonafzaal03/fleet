@@ -1,0 +1,16 @@
+---
+Name: app-graphql
+After:
+  - '#graphqlconfig'
+---
+#SilverStripe\Core\Injector\Injector:
+#  SilverStripe\GraphQL\Manager.default:
+#    properties:
+#      Middlewares:
+#        CSRFMiddleware: false
+
+SilverStripe\GraphQL\Schema\Schema:
+  schemas:
+    default:
+      src:
+        - "app/_graphql"

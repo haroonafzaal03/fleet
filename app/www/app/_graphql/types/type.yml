@@ -1,0 +1,85 @@
+VehicleType:
+  fields:
+    ID: ID
+    Make: String
+    Model: String
+    AxleSize: String
+    BowserCapacity: String
+    VehicleTracking: String
+    BowserType: String
+    LicenseExpiry: String
+    RegistrationNumber: String
+
+PartyType:
+  fields:
+    ID: String
+    NTN: String
+    STN: String
+    ContactDetails: String
+    ExpiryAlert: String
+    VehicleTracking: String
+    BowserType: String
+    LicenseExpiry: String
+    CustomerProduct: String
+    CustomerParty: String
+    FreightCharges: Float
+    FirstName: String
+    Surname: String
+
+ProductType:
+  fields:
+    ID: ID
+    Name: String
+    Description: String
+
+LocationType:
+  fields:
+    ID: ID
+    Name: String
+    City: String
+    Lat: String
+    Lng: String
+    State: String
+
+UOMType:
+  fields:
+    ID: ID
+    Name: String
+    ShortName: String
+    Description: String
+
+DocumentsType:
+  fields:
+    ID: ID
+    Name: String
+    FileFileName: String
+
+ElasticTripType:
+  fields:
+    ID: ID
+    Status: String
+    LoadDate: String
+    UnloadDate: String
+    LoadWeight: Float
+    UnloadWeight: Float
+    CalculatedShortage: Float
+    DeliveryChallanNumber: String
+    Vehicle: VehicleType
+    SendingParty: PartyType
+    ReceivingParty: PartyType
+    Product: ProductType
+    OriginLocation: LocationType
+    DestinationLocation: LocationType
+    LoadUOM: UOMType
+    UnloadUOM: UOMType
+    Documents: DocumentsType
+    DeliveryChalan: DocumentsType
+
+ReadTripsFilterInput:
+  isInput: true
+  fields:
+    StartDate: String
+    EndDate: String
+    VehicleID: Int
+    CustomerID: Int
+    ProductID: Int

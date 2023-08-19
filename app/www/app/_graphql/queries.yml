@@ -1,0 +1,39 @@
+readAllTrips:
+  type: '[ElasticTripType]'
+  resolver: null
+  args:
+    Filters: ReadTripsFilterInput
+  plugins:
+    paginateList: false
+    paginate:
+      resolver: [ 'App\Resolvers\ReportingResolver','resolveReadAllTrips' ]
+
+readAllCustomers:
+  type: '[PartyType]'
+  resolver: null
+  args:
+    q: 'String'
+  plugins:
+    paginateList: false
+    paginate:
+      resolver: [ 'App\Resolvers\ReportingResolver','resolveReadAllCustomers' ]
+
+readAllProducts:
+  type: '[ProductType]'
+  resolver: null
+  args:
+    q: 'String'
+  plugins:
+    paginateList: false
+    paginate:
+      resolver: [ 'App\Resolvers\ReportingResolver','resolveReadAllProducts' ]
+
+readAllVehicle:
+  type: '[VehicleType]'
+  resolver: null
+  args:
+    q: 'String'
+  plugins:
+    paginateList: false
+    paginate:
+      resolver: [ 'App\Resolvers\ReportingResolver','resolveReadAllVehicle' ]
